@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="¶git 基本操作 ¶git 初始化 script1234git init #git目录初始化git init &amp;lt;repo&amp;gt; #本地初始化，并且建立一个名为repo的空仓库git init --bare #git裸仓库初始化git init --bare &amp;lt;repo&amp;gt; #指定某个目录成为中心仓库（裸仓库） git init这个命令执行后会在本地生成一个 .git 的文件夹，">
+<meta name="description" content="¶git 合并操作 通过git log查看提交记录及其commitId 再通过git reset --soft commitId来回退版本(–soft 和 --hard的区别就是 --soft是软回退，会将你这次commitId之后的提交全部回退到暂存区中，–hard会将你 这次commitId之后的提交全部清除掉) 此时你这次commitId之后的提交都会回到暂存区中 git commit -m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git 操作">
+<meta property="og:title" content="git 合并操作">
 <meta property="og:url" content="https://hexo.lilis.xin/2019/09/11/git-操作/index.html">
 <meta property="og:site_name" content="小叽の博客">
-<meta property="og:description" content="¶git 基本操作 ¶git 初始化 script1234git init #git目录初始化git init &amp;lt;repo&amp;gt; #本地初始化，并且建立一个名为repo的空仓库git init --bare #git裸仓库初始化git init --bare &amp;lt;repo&amp;gt; #指定某个目录成为中心仓库（裸仓库） git init这个命令执行后会在本地生成一个 .git 的文件夹，">
+<meta property="og:description" content="¶git 合并操作 通过git log查看提交记录及其commitId 再通过git reset --soft commitId来回退版本(–soft 和 --hard的区别就是 --soft是软回退，会将你这次commitId之后的提交全部回退到暂存区中，–hard会将你 这次commitId之后的提交全部清除掉) 此时你这次commitId之后的提交都会回到暂存区中 git commit -m">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-09-11T07:51:13.963Z">
+<meta property="og:updated_time" content="2019-09-11T09:52:01.406Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git 操作">
-<meta name="twitter:description" content="¶git 基本操作 ¶git 初始化 script1234git init #git目录初始化git init &amp;lt;repo&amp;gt; #本地初始化，并且建立一个名为repo的空仓库git init --bare #git裸仓库初始化git init --bare &amp;lt;repo&amp;gt; #指定某个目录成为中心仓库（裸仓库） git init这个命令执行后会在本地生成一个 .git 的文件夹，">
+<meta name="twitter:title" content="git 合并操作">
+<meta name="twitter:description" content="¶git 合并操作 通过git log查看提交记录及其commitId 再通过git reset --soft commitId来回退版本(–soft 和 --hard的区别就是 --soft是软回退，会将你这次commitId之后的提交全部回退到暂存区中，–hard会将你 这次commitId之后的提交全部清除掉) 此时你这次commitId之后的提交都会回到暂存区中 git commit -m">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>git 操作 | 小叽の博客</title>
+  <title>git 合并操作 | 小叽の博客</title>
   
 
 
@@ -313,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git 操作</h1>
+          <h1 class="post-title" itemprop="name headline">git 合并操作</h1>
         
 
         <div class="post-meta">
@@ -357,7 +357,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  297
+                  106
                 </span>
               
 
@@ -394,18 +394,7 @@
       
 
       
-        <h3 id="git-基本操作"><a class="header-anchor" href="#git-基本操作">¶</a>git 基本操作</h3>
-<h4 id="git-初始化"><a class="header-anchor" href="#git-初始化">¶</a>git 初始化</h4>
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git init #git目录初始化</span><br><span class="line">git init &lt;repo&gt; #本地初始化，并且建立一个名为repo的空仓库</span><br><span class="line">git init --bare #git裸仓库初始化</span><br><span class="line">git init --bare &lt;repo&gt; #指定某个目录成为中心仓库（裸仓库）</span><br></pre></td></tr></table></figure>
-<p><code>git init</code>这个命令执行后会在本地生成一个 .git 的文件夹，用来追踪仓库的所有变更。<br>
-<code>--bare</code>: 使用 --bare 参数初始化的仓库，我们一般称之为裸仓库， 因为这样创建的仓库并不包含 工作区 ， 也就是说，我们并不能在这个目录下执行我们一般使用的 Git 命令。</p>
-<h5 id="对比"><a class="header-anchor" href="#对比">¶</a>对比</h5>
-<ol>
-<li>直接 git init 创建的仓库:</li>
-<li>直接 git init 创建的仓库:</li>
-</ol>
-<h3 id="git-特殊操作"><a class="header-anchor" href="#git-特殊操作">¶</a>git 特殊操作</h3>
-<h4 id="git-合并操作"><a class="header-anchor" href="#git-合并操作">¶</a>git 合并操作</h4>
+        <h3 id="git-合并操作"><a class="header-anchor" href="#git-合并操作">¶</a>git 合并操作</h3>
 <p>通过<code>git log</code>查看提交记录及其commitId<br>
 再通过<code>git reset --soft commitId</code>来回退版本(–soft 和 --hard的区别就是 --soft是软回退，会将你这次commitId之后的提交全部回退到暂存区中，–hard会将你<br>
 这次commitId之后的提交全部清除掉)<br>
@@ -444,6 +433,10 @@ git commit -m 随便写注释</p>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/11/git本地仓库和裸仓库/" rel="prev" title="git本地仓库和裸仓库">
+                git本地仓库和裸仓库 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -522,7 +515,7 @@ git commit -m 随便写注释</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -600,7 +593,7 @@ git commit -m 随便写注释</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-基本操作"><span class="nav-number">1.</span> <span class="nav-text">¶git 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-初始化"><span class="nav-number">1.1.</span> <span class="nav-text">¶git 初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对比"><span class="nav-number">1.1.1.</span> <span class="nav-text">¶对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-特殊操作"><span class="nav-number">2.</span> <span class="nav-text">¶git 特殊操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-合并操作"><span class="nav-number">2.1.</span> <span class="nav-text">¶git 合并操作</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-合并操作"><span class="nav-number">1.</span> <span class="nav-text">¶git 合并操作</span></a></li></ol></div>
             
 
           </div>
@@ -634,7 +627,7 @@ git commit -m 随便写注释</p>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">46.2k</span>
+    <span title="Site words total count">46.8k</span>
   
 </div>
 

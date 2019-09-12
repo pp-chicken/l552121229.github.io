@@ -293,6 +293,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hexo.lilis.xin/2019/09/11/git本地仓库和裸仓库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小叽">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://lilis-hexo-blog.oss-cn-shenzhen.aliyuncs.com/head.png?x-oss-process=style/header">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小叽の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/11/git本地仓库和裸仓库/" itemprop="url">git本地仓库和裸仓库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-11T17:50:25+08:00">
+                2019-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  770
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="git-初始化"><a class="header-anchor" href="#git-初始化">¶</a>git 初始化</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git init #git目录初始化</span><br><span class="line">git init &lt;repo&gt; #本地初始化，并且建立一个名为repo的空仓库</span><br><span class="line">git init --bare #git裸仓库初始化</span><br><span class="line">git init --bare &lt;repo&gt; #指定某个目录成为中心仓库（裸仓库）</span><br></pre></td></tr></table></figure>
+<p><code>git init</code>这个命令执行后会在本地生成一个 .git 的文件夹，用来追踪仓库的所有变更。<br>
+<code>--bare</code>: 使用 --bare 参数初始化的仓库，我们一般称之为裸仓库， 因为这样创建的仓库并不包含 工作区 ， 也就是说，我们并不能在这个目录下执行我们一般使用的 Git 命令。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/11/git本地仓库和裸仓库/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://hexo.lilis.xin/2019/09/11/git-操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -312,7 +470,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/11/git-操作/" itemprop="url">git 操作</a></h1>
+                <a class="post-title-link" href="/2019/09/11/git-操作/" itemprop="url">git 合并操作</a></h1>
         
 
         <div class="post-meta">
@@ -356,7 +514,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  297
+                  106
                 </span>
               
 
@@ -395,18 +553,7 @@
       
         
           
-            <h3 id="git-基本操作"><a class="header-anchor" href="#git-基本操作">¶</a>git 基本操作</h3>
-<h4 id="git-初始化"><a class="header-anchor" href="#git-初始化">¶</a>git 初始化</h4>
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git init #git目录初始化</span><br><span class="line">git init &lt;repo&gt; #本地初始化，并且建立一个名为repo的空仓库</span><br><span class="line">git init --bare #git裸仓库初始化</span><br><span class="line">git init --bare &lt;repo&gt; #指定某个目录成为中心仓库（裸仓库）</span><br></pre></td></tr></table></figure>
-<p><code>git init</code>这个命令执行后会在本地生成一个 .git 的文件夹，用来追踪仓库的所有变更。<br>
-<code>--bare</code>: 使用 --bare 参数初始化的仓库，我们一般称之为裸仓库， 因为这样创建的仓库并不包含 工作区 ， 也就是说，我们并不能在这个目录下执行我们一般使用的 Git 命令。</p>
-<h5 id="对比"><a class="header-anchor" href="#对比">¶</a>对比</h5>
-<ol>
-<li>直接 git init 创建的仓库:</li>
-<li>直接 git init 创建的仓库:</li>
-</ol>
-<h3 id="git-特殊操作"><a class="header-anchor" href="#git-特殊操作">¶</a>git 特殊操作</h3>
-<h4 id="git-合并操作"><a class="header-anchor" href="#git-合并操作">¶</a>git 合并操作</h4>
+            <h3 id="git-合并操作"><a class="header-anchor" href="#git-合并操作">¶</a>git 合并操作</h3>
 <p>通过<code>git log</code>查看提交记录及其commitId<br>
 再通过<code>git reset --soft commitId</code>来回退版本(–soft 和 --hard的区别就是 --soft是软回退，会将你这次commitId之后的提交全部回退到暂存区中，–hard会将你<br>
 这次commitId之后的提交全部清除掉)<br>
@@ -1898,183 +2045,6 @@ git commit -m 随便写注释</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hexo.lilis.xin/2018/09/19/php在linux下call to undefined function imagettftext()/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小叽">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://lilis-hexo-blog.oss-cn-shenzhen.aliyuncs.com/head.png?x-oss-process=style/header">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小叽の博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/19/php在linux下call to undefined function imagettftext()/" itemprop="url">php在linux下call to undefined function imagettftext()</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-19T19:13:43+08:00">
-                2018-09-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  80
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在线上环境测试图片生成的时候报错:<code>call to undefined function imagettftext()</code></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/19/php在linux下call to undefined function imagettftext()/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2127,7 +2097,7 @@ git commit -m 随便写注释</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2223,7 +2193,7 @@ git commit -m 随便写注释</p>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">46.2k</span>
+    <span title="Site words total count">46.8k</span>
   
 </div>
 
