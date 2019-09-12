@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hexo.lilis.xin/"/>
-  <updated>2019-09-11T09:54:39.392Z</updated>
+  <updated>2019-09-12T04:35:58.383Z</updated>
   <id>https://hexo.lilis.xin/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>404-找不到页面</title>
+    <link href="https://hexo.lilis.xin/2019/09/12/404/"/>
+    <id>https://hexo.lilis.xin/2019/09/12/404/</id>
+    <published>2019-09-12T06:16:18.000Z</published>
+    <updated>2019-09-12T04:35:58.383Z</updated>
+    
+    <content type="html"><![CDATA[<html><body><script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="https://hexo.lilis.xin" homepagename="返回主页"></script></body></html>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;
+&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.qq.com/404/search_children.js&quot; charset=&quot;utf-8&quot; homepageurl=&quot;https://hexo.lilis.
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>git本地仓库和裸仓库</title>
@@ -510,33 +533,6 @@
     
       <category term="Linux常用指令" scheme="https://hexo.lilis.xin/categories/Linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>PHP的非swoole异步操作</title>
-    <link href="https://hexo.lilis.xin/2018/08/16/570-PHP%E7%9A%84%E9%9D%9Eswoole%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C/"/>
-    <id>https://hexo.lilis.xin/2018/08/16/570-PHP的非swoole异步操作/</id>
-    <published>2018-08-16T04:55:32.000Z</published>
-    <updated>2019-08-01T05:05:15.929Z</updated>
-    
-    <content type="html"><![CDATA[<p>在前几天对WordPress进行同步更新文章的改造之后,每次更新文章都需要花费较长的时间,这很显然是不合理的.<br>更新文章主要都把时间花费在了一条shell指令上面.</p>  <a id="more"></a><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec(<span class="string">'cd 目录 &amp;&amp; hexo clean &amp;&amp; hexo d &amp;&amp; pm2 reload app'</span>);</span><br></pre></td></tr></table></figure><p>引用原文地址:</p><ol><li><a href="http://www.laruence.com/2008/04/14/318.html" title="PHP实现异步调用方法研究" target="_blank" rel="noopener">PHP实现异步调用方法研究</a></li><li><a href="https://www.jianshu.com/p/3f8a43b22dd8" title="PHP异步的的玩法" target="_blank" rel="noopener">PHP异步的的玩法</a></li></ol><h3 id="先说说鸟哥文章中的几种玩法："><a class="header-anchor" href="#先说说鸟哥文章中的几种玩法：">¶</a>先说说鸟哥文章中的几种玩法：</h3><ol><li><p>通过渲染前端页面，使用js执行Ajax，这种方式现在还适用。只是受限于业务场景，因为只能在浏览器中调用，遇到接口请求就不行了。</p></li><li><p>通过popen()方法打开一个指向进程的管道，每个请求会多起一个进程。忽略进程来看最主要的原因是数据的传输特别不方便，使用场景有限。</p></li><li><p>使用CURL扩展，通过设置timeout超时参数，能实现离弦之箭的效果。不过这种方法会主动断开连接。被调用的服务如果有做连接检测，也会中断服务端脚本的执行。比如我们请求 微信的某个费时接口（20s），我们调用1s就断开连接，微信端是否会维持请求执行20S是不可控的。所以在curl别的网站的时候这种方法不推荐大家使用，但如果只是curl自己还是很好用的。</p></li><li><p>与CURL类似，通过fsockopen创建socket连接访问远程服务，不循环获取请求结果。一样会有三中连接被断开的问题。</p></li></ol><h3 id="php关于异步的改进"><a class="header-anchor" href="#php关于异步的改进">¶</a>PHP关于异步的改进</h3><ol><li><p>CURL扩展已支持毫秒配置，将 CURLOPT_TIMEOUT 改为 CURLOPT_TIMEOUT_MS 即可生效（cURL 版本 &gt;= libcurl/7.21.0，老服务器要检查版本），但还是我前面说的需要服务端配合，不然接口的调用成功失败不可控。</p></li><li><p>CURL扩展已支持并发，我们能一次访问N个接口，执行时间取最长接口的时间。比如我们能一次访问 京东支付（1s），微信支付(1.2s)，支付宝(0.8s)不同服务的三个接口,总耗时才1.2s。详细用法 curl_multi_init</p></li><li><p>类似Node.js的异步IO框架Swoole，能很好的实现异步调用；不过Swoole理论上不能算PHP框架，他算是PHP功能的扩展。所以除非项目都用Swoole写，不然也是享受不到异步IO的福利。</p></li><li><p>对yield的支持，能实现调度器的功能，写单进程的服务时能大展拳脚，特别是实现协程，异步更不在话下。不过在多进程的web服务上没有太大的使用场景，看未来会不会有新的玩法吧。</p></li></ol><h3 id="关于web异步的解决方案"><a class="header-anchor" href="#关于web异步的解决方案">¶</a>关于web异步的解决方案</h3><p>这个主要是针对那些需要异步而且并不太看中异步操作的结果的特殊场景</p><ol><li>curl配合较短的等待时间.</li><li>写一个swoole项目,需要异步时发送相应指令到相关端口</li><li>使用以下插件</li></ol><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Arrow</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> $instance;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> static</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == Arrow::$instance)</span><br><span class="line">            Arrow::$instance = <span class="keyword">new</span> Arrow();</span><br><span class="line">        <span class="keyword">return</span> Arrow::$instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span><span class="params">($rb)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        $pid = pcntl_fork();</span><br><span class="line">        <span class="keyword">if</span>($pid &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            pcntl_wait($status);</span><br><span class="line">        &#125;<span class="keyword">elseif</span>($pid == <span class="number">0</span>)&#123;</span><br><span class="line">            $cid = pcntl_fork();</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>($cid == <span class="number">0</span>)&#123;</span><br><span class="line">                $rb();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">exit</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*调用</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">$time_out = <span class="number">30</span>;</span><br><span class="line">Arrow::getInstance()-&gt;run(<span class="function"><span class="keyword">function</span><span class="params">()</span> <span class="title">use</span> <span class="params">($time_out)</span></span>&#123;</span><br><span class="line">    <span class="comment">//这里写我们要执行的代码</span></span><br><span class="line">    sleep($time_out);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>最终事实证明还是curl稳定,通过pcntl_fork()拉出的子进程和孙进程会影响到web的正常返回</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在前几天对WordPress进行同步更新文章的改造之后,每次更新文章都需要花费较长的时间,这很显然是不合理的.&lt;br&gt;
-更新文章主要都把时间花费在了一条shell指令上面.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="PHP" scheme="https://hexo.lilis.xin/categories/PHP/"/>
-    
-      <category term="WordPress" scheme="https://hexo.lilis.xin/categories/PHP/WordPress/"/>
-    
-    
-      <category term="PHP" scheme="https://hexo.lilis.xin/tags/PHP/"/>
-    
-      <category term="异步" scheme="https://hexo.lilis.xin/tags/%E5%BC%82%E6%AD%A5/"/>
     
   </entry>
   
