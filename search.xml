@@ -396,9 +396,9 @@
     <content type="text"><![CDATA[linux下载安装pcre-8.35./configure --prefix=/usr/local/pcre 报错:configure: error: You need a C++ compiler for C++ support解决:yum install -y gcc gcc-c++]]></content>
       <tags>
         <tag>编译</tag>
+        <tag>报错</tag>
         <tag>gcc-c++</tag>
         <tag>pcre</tag>
-        <tag>报错</tag>
       </tags>
   </entry>
   <entry>
