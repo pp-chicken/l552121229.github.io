@@ -360,6 +360,16 @@ alias admin.helper=&apos;composer require laravel-admin-ext/helpers &amp;&amp; p
         proceedsearch();
       };
     });
+    window.onkeydown = function(e){
+      if (e.keyCode === 70 && (e.metaKey === true || e.ctrlKey === true)) {
+          e.returnValue=false;
+          if (isfetched === false) {
+            searchFunc(path, 'local-search-input', 'local-search-result');
+            } else {
+              proceedsearch();
+            };
+      }
+    }
 
     $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
