@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.3.0"><link rel="apple-touch-icon" sizes="180x180" href="/images/head.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/head.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/head.png"><link rel="mask-icon" href="/images/head.png" color="#222"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css"><script class="hexo-configurations">var NexT=window.NexT||{},CONFIG={hostname:"hexo.lilis.xin",root:"/",images:"/images",scheme:"Mist",version:"8.2.1",exturl:!1,sidebar:{position:"right",display:"post",padding:18,offset:12},copycode:!1,bookmark:{enable:!1,color:"#222",save:"auto"},fancybox:!1,mediumzoom:!1,lazyload:!1,pangu:!1,comments:{style:"tabs",active:null,storage:!0,lazyload:!1,nav:null},motion:{enable:!0,async:!0,transition:{post_block:"fadeIn",post_header:"fadeIn",post_body:"fadeIn",coll_header:"fadeIn",sidebar:"fadeIn"}},prism:!1,i18n:{placeholder:"Searching...",empty:"We didn't find any results for the search: ${query}",hits_time:"${hits} results found in ${time} ms",hits:"${hits} results found"}}</script><meta name="description" content="Workspace：工作区 Index &#x2F; Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库 Git常用命令清单  Git常用命令清单 ➡️新建代码库 # 在当前目录新建一个Git代码库 git init # 新建一个目录，将其初始化为Git代码库 git init [project-name] # 下载一个项目和它的整个代码历史 git clone [ur"><meta property="og:type" content="article"><meta property="og:title" content="Git常用命令"><meta property="og:url" content="https://hexo.lilis.xin/posts/caff8000/index.html"><meta property="og:site_name" content="骑在墙上的の博客"><meta property="og:description" content="Workspace：工作区 Index &#x2F; Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库 Git常用命令清单  Git常用命令清单 ➡️新建代码库 # 在当前目录新建一个Git代码库 git init # 新建一个目录，将其初始化为Git代码库 git init [project-name] # 下载一个项目和它的整个代码历史 git clone [ur"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2018-07-31T12:55:18.000Z"><meta property="article:modified_time" content="2019-09-12T06:27:03.000Z"><meta property="article:author" content="小叽"><meta property="article:tag" content="git"><meta name="twitter:card" content="summary"><link rel="canonical" href="https://hexo.lilis.xin/posts/caff8000/"><script class="page-configurations">CONFIG.page={sidebar:"",isHome:!1,isPost:!0,lang:"zh_CN"}</script><title>Git常用命令 | 骑在墙上的の博客</title><noscript><style>body{margin-top:2rem}.use-motion .collection-header,.use-motion .comments,.use-motion .menu-item,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header,.use-motion .sidebar{visibility:visible}.use-motion .footer,.use-motion .header,.use-motion .site-brand-container .toggle{opacity:initial}.use-motion .custom-logo-image,.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line{transform:scaleX(1)}.search-pop-overlay,.sidebar-nav{display:none}.sidebar-panel{display:block}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><div class="headband"></div><main class="main"><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="Toggle navigation bar" role="button"><span class="toggle-line"></span> <span class="toggle-line"></span> <span class="toggle-line"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><i class="logo-line"></i><h1 class="site-title">骑在墙上的の博客</h1><i class="logo-line"></i></a></div><div class="site-nav-right"><div class="toggle popup-trigger"></div></div></div><nav class="site-nav"><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>About</a></li><li class="menu-item menu-item-追番列表"><a href="/bangumis/" rel="section"><i class="user fa-fw"></i>追番列表</a></li></ul></nav></div><div class="toggle sidebar-toggle" role="button"><span class="toggle-line"></span> <span class="toggle-line"></span> <span class="toggle-line"></span></div><aside class="sidebar"><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class="sidebar-nav"><li class="sidebar-nav-toc">Table of Contents</li><li class="sidebar-nav-overview">Overview</li></ul><div class="sidebar-panel-container"><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Git常用命令清单</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="nav-number">1.1.</span> <span class="nav-text">➡️新建代码库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#more-%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">➡️ 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">➡️增加&#x2F;删除文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4"><span class="nav-number">1.4.</span> <span class="nav-text">➡️代码提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%94%AF"><span class="nav-number">1.5.</span> <span class="nav-text">➡️分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE"><span class="nav-number">1.6.</span> <span class="nav-text">➡️标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="nav-number">1.7.</span> <span class="nav-text">➡️查看信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-number">1.8.</span> <span class="nav-text">➡️远程同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%92%A4%E9%94%80"><span class="nav-number">1.9.</span> <span class="nav-text">➡️撤销</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">1.10.</span> <span class="nav-text">➡️其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Git 设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%AE%E7%AE%B1%E5%92%8C%E5%AF%86%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">➡️邮箱和密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-key"><span class="nav-number">2.2.</span> <span class="nav-text">➡️SSH key</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">2.2.0.0.1.</span> <span class="nav-text">➡️注意</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">GIT 分支操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%E5%92%8C%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">3.1.</span> <span class="nav-text">➡️添加远程仓库地址和推送到远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E8%B5%B7%E5%88%AB%E5%90%8D"><span class="nav-number">3.2.</span> <span class="nav-text">➡️为远程仓库起别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="nav-number">3.3.</span> <span class="nav-text">➡️创建分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="nav-number">3.4.</span> <span class="nav-text">➡️切换分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%88%86%E6%94%AF"><span class="nav-number">3.5.</span> <span class="nav-text">➡️查看分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF"><span class="nav-number">3.6.</span> <span class="nav-text">➡️删除分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF"><span class="nav-number">3.7.</span> <span class="nav-text">➡️重命名本地分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E7%A7%BB%E9%99%A4%E5%B7%B2%E7%BB%8F-add-%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">3.8.</span> <span class="nav-text">➡️Git 移除已经 add 的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9C%E7%A8%8B-Git-%E4%BB%93%E5%BA%93"><span class="nav-number">3.9.</span> <span class="nav-text">➡️查看远程 Git 仓库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%B8%8D%E4%BA%86-master-%E5%88%86%E6%94%AF%EF%BC%9F"><span class="nav-number">4.1.</span> <span class="nav-text">➡️为什么删不了 master 分支？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86-gitignore-txt-%E4%BF%AE%E6%94%B9%E4%B8%BA-gitignore-%E6%97%B6%E6%8F%90%E7%A4%BA-%E2%80%9C%E5%BF%85%E9%A1%BB%E9%94%AE%E5%85%A5%E6%96%87%E4%BB%B6%E5%90%8D%E2%80%9D-%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">4.2.</span> <span class="nav-text">➡️将 .gitignore.txt 修改为 .gitignore 时提示 “必须键入文件名” 怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E5%BF%BD%E7%95%A5%E8%A7%84%E5%88%99%E5%8F%8A-gitignore-%E8%A7%84%E5%88%99%E4%B8%8D%E7%94%9F%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">➡️Git忽略规则及 .gitignore 规则不生效的解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E5%81%9C%E6%AD%A2%E8%BF%BD%E8%B8%AA%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="nav-number">4.4.</span> <span class="nav-text">➡️Git 停止追踪文件权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gitkeep-%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8"><span class="nav-number">4.5.</span> <span class="nav-text">➡️.gitkeep 有什么用 ?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96-v2"><span class="nav-number">4.5.1.</span> <span class="nav-text">➡️其他</span></a></li></ol></li></ol></li></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" alt="小叽" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/images/head.png"><p class="site-author-name" itemprop="name">小叽</p><div class="site-description" itemprop="description"></div></div><div class="site-state-wrap site-overview-item animated"><nav class="site-state"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">51</span> <span class="site-state-item-name">posts</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/"><span class="site-state-item-count">56</span> <span class="site-state-item-name">tags</span></a></div></nav></div><div class="links-of-author site-overview-item animated"><span class="links-of-author-item"><a href="https://github.com/l552121229" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l552121229" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a> </span><span class="links-of-author-item"><a href="mailto:552121229l+blog@gmail.com" title="E-Mail → mailto:552121229l+blog@gmail.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a></span></div><div class="links-of-blogroll site-overview-item animated"><div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="https://blog.caoxl.com/" title="https:&#x2F;&#x2F;blog.caoxl.com&#x2F;" rel="noopener" target="_blank">Keep It Simple And Stupid</a></li></ul></div></div></div></div></aside><div class="sidebar-dimmer"></div></header><div class="back-to-top" role="button"><i class="fa fa-arrow-up"></i> <span>0%</span></div><noscript><div class="noscript-warning">Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class="post-block"><article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh_CN"><link itemprop="mainEntityOfPage" href="https://hexo.lilis.xin/posts/caff8000/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/head.png"><meta itemprop="name" content="小叽"><meta itemprop="description" content=""></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="骑在墙上的の博客"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Git常用命令</h1><div class="post-meta-container"><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i> </span><span class="post-meta-item-text">Posted on</span> <time title="Created: 2018-07-31 20:55:18" itemprop="dateCreated datePublished" datetime="2018-07-31T20:55:18+08:00">2018-07-31</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar-check"></i> </span><span class="post-meta-item-text">Edited on</span> <time title="Modified: 2019-09-12 14:27:03" itemprop="dateModified" datetime="2019-09-12T14:27:03+08:00">2019-09-12</time></span></div></div></header><div class="post-body" itemprop="articleBody"><script src="/assets/js/APlayer.min.js"></script><ol><li>Workspace：工作区</li><li>Index / Stage：暂存区</li><li>Repository：仓库区（或本地仓库）</li><li>Remote：远程仓库</li><li>Git常用命令清单</li></ol><h1>Git常用命令清单</h1><h2 id="新建代码库"><a class="header-anchor" href="#新建代码库">➡️</a>新建代码库</h2><pre><code># 在当前目录新建一个Git代码库
+git init
+# 新建一个目录，将其初始化为Git代码库
+git init [project-name]
+# 下载一个项目和它的整个代码历史
+git clone [url]
+</code></pre><h2 id="more-配置"><a class="header-anchor" href="#more-配置">➡️</a><a id="more"></a><br>配置</h2><p>Git的设置文件为 <code>.gitconfig</code>，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）</p><pre><code># 显示当前的Git配置
+git config --list
+# 编辑Git配置文件
+git config -e [--global]
+# 设置提交代码时的用户信息
+git config [--global] user.name &quot;[name]&quot;
+git config [--global] user.email &quot;[email address]&quot;
+</code></pre><h2 id="增加-删除文件"><a class="header-anchor" href="#增加-删除文件">➡️</a>增加/删除文件</h2><pre><code># 添加指定文件到暂存区
+git add [file1] [file2] ...
+# 添加指定目录到暂存区，包括子目录
+git add [dir]
+# 添加当前目录的所有文件到暂存区
+git add .
+# 添加每个变化前，都会要求确认
+# 对于同一个文件的多处变化，可以实现分次提交
+git add -p
+# 删除工作区文件，并且将这次删除放入暂存区
+git rm [file1] [file2] ...
+# 停止追踪指定文件，但该文件会保留在工作区
+git rm --cached [file]
+# 改名文件，并且将这个改名放入暂存区
+git mv [file-original] [file-renamed]
+</code></pre><h2 id="代码提交"><a class="header-anchor" href="#代码提交">➡️</a>代码提交</h2><pre><code># 提交暂存区到仓库区
+git commit -m [message]
+# 提交暂存区的指定文件到仓库区
+git commit [file1] [file2] ... -m [message]
+# 提交工作区自上次commit之后的变化，直接到仓库区
+git commit -a
+# 提交时显示所有diff信息
+git commit -v
+# 使用一次新的commit，替代上一次提交
+# 如果代码没有任何新变化，则用来改写上一次commit的提交信息
+git commit --amend -m [message]
+# 重做上一次commit，并包括指定文件的新变化
+git commit --amend [file1] [file2] ...
+</code></pre><h2 id="分支"><a class="header-anchor" href="#分支">➡️</a>分支</h2><pre><code># 列出所有本地分支
+git branch
+# 列出所有远程分支
+git branch -r
+# 列出所有本地分支和远程分支
+git branch -a
+# 新建一个分支，但依然停留在当前分支
+git branch [branch-name]
+# 新建一个分支，并切换到该分支
+git checkout -b [branch]
+# 新建一个分支，指向指定commit
+git branch [branch] [commit]
+# 新建一个分支，与指定的远程分支建立追踪关系
+git branch --track [branch] [remote-branch]
+# 切换到指定分支，并更新工作区
+git checkout [branch-name]
+# 切换到上一个分支
+git checkout -
+# 建立追踪关系，在现有分支与指定的远程分支之间
+git branch --set-upstream [branch] [remote-branch]
+# 合并指定分支到当前分支
+git merge [branch]
+# 选择一个commit，合并进当前分支
+git cherry-pick [commit]
+# 删除分支
+git branch -d [branch-name]
+# 删除远程分支
+git push origin --delete [branch-name]
+git branch -dr [remote/branch]
+</code></pre><h2 id="标签"><a class="header-anchor" href="#标签">➡️</a>标签</h2><pre><code># 列出所有tag
+git tag
+# 新建一个tag在当前commit
+git tag [tag]
+# 新建一个tag在指定commit
+git tag [tag] [commit]
+# 删除本地tag
+git tag -d [tag]
+# 删除远程tag
+git push origin :refs/tags/[tagName]
+# 查看tag信息
+git show [tag]
+# 提交指定tag
+git push [remote] [tag]
+# 提交所有tag
+git push [remote] --tags
+# 新建一个分支，指向某个tag
+git checkout -b [branch] [tag]
+</code></pre><h2 id="查看信息"><a class="header-anchor" href="#查看信息">➡️</a>查看信息</h2><pre><code># 显示有变更的文件
+git status
+# 显示当前分支的版本历史
+git log
+# 显示commit历史，以及每次commit发生变更的文件
+git log --stat
+# 搜索提交历史，根据关键词
+git log -S [keyword]
+# 显示某个commit之后的所有变动，每个commit占据一行
+git log [tag] HEAD --pretty=format:%s
+# 显示某个commit之后的所有变动，其&quot;提交说明&quot;必须符合搜索条件
+git log [tag] HEAD --grep feature
+# 显示某个文件的版本历史，包括文件改名
+git log --follow [file]
+git whatchanged [file]
+# 显示指定文件相关的每一次diff
+git log -p [file]
+# 显示过去5次提交
+git log -5 --pretty --oneline
+# 显示所有提交过的用户，按提交次数排序
+git shortlog -sn
+# 显示指定文件是什么人在什么时间修改过
+git blame [file]
+# 显示暂存区和工作区的差异
+git diff
+# 显示暂存区和上一个commit的差异
+git diff --cached [file]
+# 显示工作区与当前分支最新commit之间的差异
+git diff HEAD
+# 显示两次提交之间的差异
+git diff [first-branch]...[second-branch]
+# 显示今天你写了多少行代码
+git diff --shortstat &quot;@&#123;0 day ago&#125;&quot;
+# 显示某次提交的元数据和内容变化
+git show [commit]
+# 显示某次提交发生变化的文件
+git show --name-only [commit]
+# 显示某次提交时，某个文件的内容
+git show [commit]:[filename]
+# 显示当前分支的最近几次提交
+git reflog
+</code></pre><h2 id="远程同步"><a class="header-anchor" href="#远程同步">➡️</a>远程同步</h2><pre><code># 下载远程仓库的所有变动
+git fetch [remote]
+# 显示所有远程仓库
+git remote -v
+# 显示某个远程仓库的信息
+git remote show [remote]
+# 增加一个新的远程仓库，并命名
+git remote add [shortname] [url]
+# 取回远程仓库的变化，并与本地分支合并
+git pull [remote] [branch]
+# 上传本地指定分支到远程仓库
+git push [remote] [branch]
+# 强行推送当前分支到远程仓库，即使有冲突
+git push [remote] --force
+# 推送所有分支到远程仓库
+git push [remote] --all
+</code></pre><h2 id="撤销"><a class="header-anchor" href="#撤销">➡️</a>撤销</h2><pre><code># 恢复暂存区的指定文件到工作区
+git checkout [file]
+# 恢复某个commit的指定文件到暂存区和工作区
+git checkout [commit] [file]
+# 恢复暂存区的所有文件到工作区
+git checkout .
+# 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变
+git reset [file]
+# 重置暂存区与工作区，与上一次commit保持一致
+git reset --hard
+# 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变
+git reset [commit]
+# 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致
+git reset --hard [commit]
+# 重置当前HEAD为指定commit，但保持暂存区和工作区不变
+git reset --keep [commit]
+# 新建一个commit，用来撤销指定commit
+# 后者的所有变化都将被前者抵消，并且应用到当前分支
+git revert [commit]
+# 暂时将未提交的变化移除，稍后再移入
+git stash
+git stash pop
+</code></pre><h2 id="其他"><a class="header-anchor" href="#其他">➡️</a>其他</h2><pre><code># 生成一个可供发布的压缩包
+git archive
+</code></pre><h1>Git 设置</h1><h2 id="邮箱和密码"><a class="header-anchor" href="#邮箱和密码">➡️</a>邮箱和密码</h2><pre><code>git config --global user.email &quot;code0809@163.com&quot;
+git config --global user.name &quot;SoulMate94&quot;
+</code></pre><p>需要注意的是，如果以前全局配置后，再次执行该操作会覆盖原用户名。 如果配置了全局账号，多个 Git 账号的情况下执行 remote、pull、push 的时候会出现问题，因为要 pull 的时候识别的是邮箱，多个 git 账号，必然对应多个邮箱，那自然就不能使用 global 的 user.email 了。 这时候可以为每个 repo 设置自己的 user.email。</p><pre><code># 取消 global
+git config --global --unset user.name
+git config --global --unset user.email
+# 设置每个项目 repo 的 user.email
+git config  user.email &quot;xxx@xxx.com&quot;
+git config  user.name  &quot;username&quot;
+</code></pre><h2 id="SSH-key"><a class="header-anchor" href="#SSH-key">➡️</a>SSH key</h2><pre><code>ssh-keygen -t rsa -C &quot;552121229l@gmail.com&quot;
+</code></pre><p>一直回车，成功的话会在 ~/ 下生成 .ssh 文件夹，进去，打开 id_rsa.pub，复制里面的 key，然后进入 GitHub 的 Account Settings，选择 SSH Keys -&gt; Add SSH Key，粘贴在你电脑上生成的 key。（title 随便填） 验证是否成功：</p><pre><code>$ ssh -T git@github.com
+# 成功:
+Hi Tessttt! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre><p>配置多个 Git 远程仓库的 SSH-Key 我机器上的 Git 会在 GitHub、GitCafe、<a target="_blank" rel="noopener" href="http://Coding.NET">Coding.NET</a> 、以及树莓派上的私有 Git 仓库之间来回切换，所以如果不配置 SSH-Key 光输入密码就得浪费不少时间。 在默认情况下，ssh 总是使用 id_rsa 密钥文件进行链接，即是第一次执行 ssh-keygen 后默认生成的，这样对于多个账号的认证肯定是不行的。 因此，要实现多帐号下的 SSH Key 的切换需要在客户端做一些配置：</p><pre><code>cd ~/.ssh    # 必须进入这个路径否则生成的密钥路径容易遗忘
+ssh-keygen -t rsa -C 'username@github.com' -f id_rsa_github   #  -C 后面跟的是注释
+ssh-keygen -t rsa -C 'username@gitcafe.com' -f id_rsa_gitcafe
+ssh-keygen -t rsa -C 'username@coding.net' -f id_rsa_coding 
+# 如果还有多个 Git 远程仓库地址就继续执行 ...
+</code></pre><p>然后复制 ~/.ssh/ 下面的相应的公钥到你的 Git 远程仓库服务器上即可，这个步骤和 GitHub 上的操作是一样的。 然后在 ~/.ssh/ 下面创建一个 config 文件，填入你刚刚配置的 SSH 密钥信息，内容应类似于如下：</p><pre><code>Host github.com
+    HostName github.com
+    User SoulMate94
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_github
+Host gitcafe.com
+    HostName gitcafe.com
+    User SoulMate94
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_gitcafe
+Host git.coding.net    # 注意 Coding.NET 的 HostName 是 git.coding.net
+    HostName git.coding.net
+    User SoulMate94
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_coding
+</code></pre><p>然后可以测试一下是否配置 OK：</p><pre><code>ssh -T git@github.com
+ssh -T git@gitcafe.com
+ssh -T git@git.coding.net
+ssh -T git@git.keensword.net
+</code></pre><p>如果没有提示错误就说明 SSH 配置好了。 然后克隆 SSH 协议的 Git 仓库即可，此后便不用每次输入用户名密码了，比如：</p><pre><code>git clone git@gitcafe.com:SoulMate94/soulmate94.git
+git clone git@git.coding.net:SoulMate94/SoulMate94.git
+</code></pre><p>然后还可以为不同远程 Git 仓库起不同的别名，就算是为同一内容的不同 Git 仓库提交代码，也可以通过别名来区分，比如：</p><pre><code>git remote add gitcafe git@gitcafe.com:SoulMate94/soulmate94.git
+git remote add coding  git@git.coding.net:SoulMate94/SoulMate94.git
+</code></pre><p>这样修改了同一个仓库后就算已经 push 到了一个远程仓库地址，也可以继续 push 到另一个的同一分支或不同分支，其区别就是别名：</p><pre><code>git push gitcafe master
+git push coding master
+</code></pre><h5 id="注意"><a class="header-anchor" href="#注意">➡️</a>注意</h5><p>只有克隆 SSH 协议的 Git 仓库才能使 SSH 密钥机制生效，如果克隆的是 HTTPS 协议的则每次依然需要输入用户名和密码。</p><h1>GIT 分支操作</h1><h2 id="添加远程仓库地址和推送到远程仓库"><a class="header-anchor" href="#添加远程仓库地址和推送到远程仓库">➡️</a>添加远程仓库地址和推送到远程仓库</h2><pre><code>git remote add origin git@lilis.xin:/home/git/blog.git
+git push -u origin master
+</code></pre><ol><li><code>origin</code> 是为远程仓库地址起的别名。</li><li><code>-u</code> 只在第一次推送时使用，作用是把本地的 master 分支和远程的 master 分支关联起来，之后的推送不再需要这个参数。</li></ol><h2 id="为远程仓库起别名"><a class="header-anchor" href="#为远程仓库起别名">➡️</a>为远程仓库起别名</h2><pre><code># 移除现有分支别名
+git remote rm origin
+# 为远程仓库地址重新起别名
+git remote add caoxl     git@github.com:SoulMate94/SM94.git
+</code></pre><h2 id="创建分支"><a class="header-anchor" href="#创建分支">➡️</a>创建分支</h2><p>如果 clone 了一个空仓库，那么在执行 git branch master 的时候会报错： <code>fatal: Not a valid object name: ‘master’.</code> 这时候只需添加一些文件 commit 就行了, 比如：</p><pre><code>git add README.md
+git commit -m &quot;test&quot;
+git branch dev
+</code></pre><h2 id="切换分支"><a class="header-anchor" href="#切换分支">➡️</a>切换分支</h2><pre><code>git checkout --orphan gh-pages
+git checkout -b test    # 从当前分支中分出一个 test 分支并切换到新 test 分支
+</code></pre><h2 id="查看分支"><a class="header-anchor" href="#查看分支">➡️</a>查看分支</h2><pre><code>git branch -a    # 查看远程分支
+git branch        # 查看本地分支
+git remote show origin
+</code></pre><h2 id="删除分支"><a class="header-anchor" href="#删除分支">➡️</a>删除分支</h2><pre><code>git branch -d branch_name        # 删除本地分支
+git push origin --delete &lt;branch_name&gt;    # 删除远程分支版本( 类似的有删除标签：git push origin --delete tag &lt;tagname&gt; )
+git push origin :&lt;branchName&gt;    # 推送一个空分支到远程分支, 其实就相当于删除远程分支
+git remote prune origin    # 删除不存在对应远程分支的本地分支
+git fetch -p    #在 fetch 之后删除掉没有与远程分支对应的本地分支
+</code></pre><h2 id="重命名本地分支"><a class="header-anchor" href="#重命名本地分支">➡️</a>重命名本地分支</h2><pre><code>git branch -m devel develop
+</code></pre><h2 id="Git-移除已经-add-的文件"><a class="header-anchor" href="#Git-移除已经-add-的文件">➡️</a>Git 移除已经 add 的文件</h2><pre><code>git reset --hard  需要回退的那次 commit 的哈希值
+</code></pre><p>每次 commit 的哈希值可以通过 git log 命令查看 上述命令执行成功之后，会彻底返回到回退到的版本状态，新发生的变更将会丢失。 对于部分发生了变更，但是变更部分的文件夹存在未提交的文件可能导致目录非空而删除失败，此时需要自行处置 完成之后，使用 –force 或 -f 参数强制 push：</p><pre><code>git push origin HEAD --force
+- `HEAD` 最近一个提交。
+- `HEAD^` 上一次。
+</code></pre><h2 id="查看远程-Git-仓库"><a class="header-anchor" href="#查看远程-Git-仓库">➡️</a>查看远程 Git 仓库</h2><pre><code>git remote -v
+</code></pre><h1>FAQ</h1><h2 id="为什么删不了-master-分支？"><a class="header-anchor" href="#为什么删不了-master-分支？">➡️</a>为什么删不了 master 分支？</h2><p>需要先更改默认分支为非 master 分支。再执行删除操作：</p><pre><code># 删除本地分支
+git branch -d [branch-name]
+git branch -D master
+# 删除远程分支
+git push origin :master
+git push origin --delete [branch-name]
+git branch -dr [remote/branch]
+</code></pre><h2 id="将-gitignore-txt-修改为-gitignore-时提示-“必须键入文件名”-怎么办？"><a class="header-anchor" href="#将-gitignore-txt-修改为-gitignore-时提示-“必须键入文件名”-怎么办？">➡️</a>将 .gitignore.txt 修改为 .gitignore 时提示 “必须键入文件名” 怎么办？</h2><pre><code>rename .gitignore.txt .gitignore
+</code></pre><h2 id="Git忽略规则及-gitignore-规则不生效的解决办法"><a class="header-anchor" href="#Git忽略规则及-gitignore-规则不生效的解决办法">➡️</a>Git忽略规则及 .gitignore 规则不生效的解决办法</h2><p>已知在 git 中如果想忽略掉某个文件，不让这个文件提交到版本库中，可以使用修改根目录中 .gitignore 文件的方法（如无，则需自己手工建立此文件）。 这个文件每一行保存了一个匹配的规则例如：</p><pre><code># 此为注释 – 将被 Git 忽略
+*.a       # 忽略所有 .a 结尾的文件
+!lib.a    # 但 lib.a 除外
+/TODO     # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
+build/    # 忽略 build/ 目录下的所有文件
+doc/*.txt # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
+</code></pre><p>规则很简单，不做过多解释，但是有时候在项目开发过程中，突然心血来潮想把某些目录或文件加入忽略规则，按照上述方法定义后发现并未生效，原因是 .gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改 .gitignore 是无效的。那么解决方法就是先把本地缓存删除（改变成未track状态），然后再提交：</p><pre><code>git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+# 如果 cache 暂存区的内容和 HEAD 不一致，请使用： git rm rf --cache . 强制删除
+</code></pre><h2 id="Git-停止追踪文件权限"><a class="header-anchor" href="#Git-停止追踪文件权限">➡️</a>Git 停止追踪文件权限</h2><pre><code>git config core.filemode false
+cat .git/config
+</code></pre><h2 id="gitkeep-有什么用"><a class="header-anchor" href="#gitkeep-有什么用">➡️</a>.gitkeep 有什么用 ?</h2><pre><code>“.gitkeep” isn’t documented, because it’s not a feature of Git.
+Git cannot add a completely empty directory. People who want to track empty directories in Git have created the convention of putting files called “.gitkeep” in these directories. The file could be called anything; Git assigns no special significance to this name.
+There is a competing convention of adding a “.gitignore” file to the empty directories to get them tracked, but some people see this as confusing since the goal is to keep the empty directories, not ignore them; “.gitignore” is also used to list files that should be ignored by Git when looking for untracked files.
+or you can use like this to except for this one: !.gitignore.
+git fetch repo 和 git fetch repo branch 的区别 ?
+</code></pre><p><code>git fetch</code>, 理解<code>fetch</code>的含义, 是远程协作的关键，而理解<code>fetch</code>的关键, 是理解<code>FETCH_HEAD</code>。 <code>FETCH_HEAD</code>指的是: 某个<code>branch</code>在服务器上的最新状态。 每一个执行过<code>fetch</code>操作的项目，都会存在一个<code>FETCH_HEAD</code>列表，这个列表保存在 <code>.git/FETCH_HEAD</code> 文件中, 其中每一行对应于远程服务器的一个分支。 当前分支指向的 FETCH_HEAD, 就是这个文件第一行对应的那个分支。 一般来说, 存在两种情况: 如果没有显式的指定远程分支, 则远程分支的 <code>master</code> 将作为默认的 <code>FETCH_HEAD</code>。 .如果指定了远程分支, 就将这个远程分支作为 <code>FETCH_HEAD</code>。 常见的 <code>git fetch</code> 使用方式包含以下四种:</p><pre><code>git fetch
+</code></pre><p>这一步其实是执行了两个关键操作: 1.创建并更新所有远程分支的本地远程分支。 2.设定当前分支的 <code>FETCH_HEAD</code> 为远程服务器的 <code>master</code> 分支 (上面说的第一种情况)。 需要注意的是，和 <code>push</code> 不同, <code>fetch</code> 会自动获取远程 新加入的分支。</p><pre><code>git fetch origin
+</code></pre><p>同上, 只不过手动指定了 <code>remote</code>。</p><pre><code>git fetch origin branch1
+</code></pre><p>设定当前分支的 FETCH_HEAD 为远程服务器的 branch1 分支。 注意: 在这种情况下, 不会在本地创建本地远程分支, 这是因为: 这个操作是 <code>git pull origin branch1</code> 的第一步, 而对应的 <code>pull</code> 操作,并不会在本地创建新的 <code>branch</code>。 一个附加效果是：这个命令可以用来测试远程主机的远程分支 <code>branch1</code> 是否存在, 如果存在, 返回<code>0</code>, 如果不存在, 返回<code>128</code>, 抛出一个异常。</p><pre><code>git fetch origin branch1:branch2
+</code></pre><p>只要明白了上面的含义, 这个就很简单了: 1. 首先执行上面的 fetch 操作 2. 使用远程 branch1 分支在本地创建 branch2 (但不会切换到该分支)，如果本地不存在branch2分支, 则会自动创建一个新的 branch2 分支。 如果本地存在 branch2 分支, 并且是 fast forward，则自动合并两个分支, 否则, 会阻止以上操作.</p><pre><code>git fetch origin :branch2
+# 等价于:
+git fetch origin master:branch2。
+
+
+git pull
+</code></pre><p>只要理解了 <code>git fetch</code> <code>git pull</code>就太简单了。 <code>git pull</code> 等价于以下两步: 1. 经命令中的pull换成fetch, 执行之。 2. git merge FETCH_HEAD 唯一需要提及的一点是: 我认为 <code>pull</code> 操作, 不应该涉及三方合并 或 衍合 操作。 换个说法: <code>pull</code> 应该总是 <code>fast forward</code> 的. 为了达到这样一个效果, 在真正 <code>push</code> 操作之前, 我倾向于使用衍合, 在本地对代码执行合并操作。 关于 git 不区分文件名大小写的处理 处理办法： windows 下在 git 中修改文件的大小写</p><pre><code>git mv --force myfile MyFile
+# 或者
+git mv -f myfile MyFile
+</code></pre><p>然后 commit 就好了。当然也可以配置一下 git：</p><pre><code>Add ignorecase = false to [core] in .git/config;
+</code></pre><h3 id="其他-v2"><a class="header-anchor" href="#其他-v2">➡️</a>其他</h3><p>创建版本号为 1 的 master 分支</p><pre><code>git push sina master:1
+</code></pre><p>删除 master 分支上版本号为 1 的 代码</p><pre><code>git push sina :1
+# 或
+git push sina master :1
+</code></pre><p>有空格则为删除版本，无空格则为新建版本。</p><pre><code>git push origin :branch
+</code></pre><p>表示将一个内容为空的同名分支推送到远程的分支，说白了, 即删除远程主机的 branch 分支, 但是这并不会消除之前的 comment 内容, 而且你一旦提交了一些大的文件(例如: 图片之类的), 通过这个操作, 是不会将这些文件占用的空间消除的. 如果要真正的删除一个文件, 除了删除整个项目, Github网站也有提供办法。</p></div><footer class="post-footer"><div class="post-tags"><a href="/tags/git/" rel="tag"># git</a></div><div class="post-nav"><div class="post-nav-item"><a href="/posts/c5865ac/" rel="prev" title="生成ssh公钥"><i class="fa fa-chevron-left"></i> 生成ssh公钥</a></div><div class="post-nav-item"><a href="/posts/43788fe5/" rel="next" title="和谐代码">和谐代码 <i class="fa fa-chevron-right"></i></a></div></div></footer></article></div><script>window.addEventListener("tabs:register",()=>{let{activeClass:t}=CONFIG.comments;if(CONFIG.comments.storage&&(t=localStorage.getItem("comments_active")||t),t){const e=document.querySelector(`a[href="#comment-${t}"]`);e&&e.click()}}),CONFIG.comments.storage&&window.addEventListener("tabs:click",t=>{if(!t.target.matches(".tabs-comment .tab-content .tab-pane"))return;const e=t.target.classList[1];localStorage.setItem("comments_active",e)})</script></div></main><footer class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2021</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">小叽</span></div><div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a></div></div></footer><script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script><script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=i;var e=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}i(),n.addEventListener("scroll",function(){var t,e;t=i,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
