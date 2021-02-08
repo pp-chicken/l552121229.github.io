@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hexo.lilis.xin/"/>
-  <updated>2021-02-06T02:16:59.809Z</updated>
+  <updated>2021-02-08T08:04:44.816Z</updated>
   <id>https://hexo.lilis.xin/</id>
   
   <author>
@@ -21,15 +21,15 @@
     <link href="https://hexo.lilis.xin/posts/2649187286/"/>
     <id>https://hexo.lilis.xin/posts/2649187286/</id>
     <published>2021-02-06T00:33:52.000Z</published>
-    <updated>2021-02-06T02:16:59.809Z</updated>
+    <updated>2021-02-08T08:04:44.816Z</updated>
     
-    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script>]]></content>
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><div class="iframeContentBody" data-iframe-src="./embed_page/"></div>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;div class=&quot;iframeContentBody&quot; data-iframe-src=&quot;./embed_page/&quot;&gt;&lt;/div&gt;
       
     
     </summary>
@@ -248,11 +248,11 @@
     
       <category term="PHP" scheme="https://hexo.lilis.xin/tags/PHP/"/>
     
-      <category term="代码" scheme="https://hexo.lilis.xin/tags/%E4%BB%A3%E7%A0%81/"/>
-    
       <category term="captcha" scheme="https://hexo.lilis.xin/tags/captcha/"/>
     
       <category term="gif" scheme="https://hexo.lilis.xin/tags/gif/"/>
+    
+      <category term="代码" scheme="https://hexo.lilis.xin/tags/%E4%BB%A3%E7%A0%81/"/>
     
   </entry>
   
