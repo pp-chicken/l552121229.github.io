@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hexo.lilis.xin/"/>
-  <updated>2021-02-08T09:09:59.176Z</updated>
+  <updated>2021-02-08T09:15:34.055Z</updated>
   <id>https://hexo.lilis.xin/</id>
   
   <author>
@@ -21,16 +21,13 @@
     <link href="https://hexo.lilis.xin/posts/2649187286/"/>
     <id>https://hexo.lilis.xin/posts/2649187286/</id>
     <published>2021-02-06T00:33:52.000Z</published>
-    <updated>2021-02-08T09:09:59.176Z</updated>
+    <updated>2021-02-08T09:15:34.055Z</updated>
     
-    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><div class="iframeContentBody" data-iframe-src="./embed_page/" data-iframe-ismobile="true" data-iframe-title="Docker 架构"></div><div class="iframeContentBody" data-iframe-src="https://www.bing.com/" data-iframe-ismobile="false" data-iframe-title="必应"></div>]]></content>
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h2 id="这是一个测试页面，测试iframe标签效果"><a class="header-anchor" href="#这是一个测试页面，测试iframe标签效果">➡️</a>这是一个测试页面，测试iframe标签效果</h2><a id="more"></a><div class="iframeContentBody" data-iframe-src="./embed_page/" data-iframe-ismobile="true" data-iframe-title="Docker 架构"></div><div class="iframeContentBody" data-iframe-src="https://www.bing.com/" data-iframe-ismobile="false" data-iframe-title="必应"></div>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;div class=&quot;iframeContentBody&quot; data-iframe-src=&quot;./embed_page/&quot; data-iframe-ismobile=&quot;true&quot;
-      
+      &lt;h2 id=&quot;这是一个测试页面，测试iframe标签效果&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#这是一个测试页面，测试iframe标签效果&quot;&gt;➡️&lt;/a&gt;这是一个测试页面，测试iframe标签效果&lt;/h2&gt;
     
     </summary>
     
