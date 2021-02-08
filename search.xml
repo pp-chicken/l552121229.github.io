@@ -17,6 +17,63 @@
       </tags>
   </entry>
   <entry>
+    <title>PHP的非swoole异步操作</title>
+    <url>/posts/398018bd/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>在前几天对WordPress进行同步更新文章的改造之后,每次更新文章都需要花费较长的时间,这很显然是不合理的.<br>
+更新文章主要都把时间花费在了一条shell指令上面.</p>
+  <a id="more"></a>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">exec(<span class="string">&#x27;cd 目录 &amp;&amp; hexo clean &amp;&amp; hexo d &amp;&amp; pm2 reload app&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>引用原文地址:</p>
+<ol>
+<li><a href="http://www.laruence.com/2008/04/14/318.html" title="PHP实现异步调用方法研究">PHP实现异步调用方法研究</a></li>
+<li><a href="https://www.jianshu.com/p/3f8a43b22dd8" title="PHP异步的的玩法">PHP异步的的玩法</a></li>
+</ol>
+<h3 id="先说说鸟哥文章中的几种玩法："><a class="header-anchor" href="#先说说鸟哥文章中的几种玩法：">➡️</a>先说说鸟哥文章中的几种玩法：</h3>
+<ol>
+<li>
+<p>通过渲染前端页面，使用js执行Ajax，这种方式现在还适用。只是受限于业务场景，因为只能在浏览器中调用，遇到接口请求就不行了。</p>
+</li>
+<li>
+<p>通过popen()方法打开一个指向进程的管道，每个请求会多起一个进程。忽略进程来看最主要的原因是数据的传输特别不方便，使用场景有限。</p>
+</li>
+<li>
+<p>使用CURL扩展，通过设置timeout超时参数，能实现离弦之箭的效果。不过这种方法会主动断开连接。被调用的服务如果有做连接检测，也会中断服务端脚本的执行。比如我们请求 微信的某个费时接口（20s），我们调用1s就断开连接，微信端是否会维持请求执行20S是不可控的。所以在curl别的网站的时候这种方法不推荐大家使用，但如果只是curl自己还是很好用的。</p>
+</li>
+<li>
+<p>与CURL类似，通过fsockopen创建socket连接访问远程服务，不循环获取请求结果。一样会有三中连接被断开的问题。</p>
+</li>
+</ol>
+<h3 id="PHP关于异步的改进"><a class="header-anchor" href="#PHP关于异步的改进">➡️</a>PHP关于异步的改进</h3>
+<ol>
+<li>
+<p>CURL扩展已支持毫秒配置，将 CURLOPT_TIMEOUT 改为 CURLOPT_TIMEOUT_MS 即可生效（cURL 版本 &gt;= libcurl/7.21.0，老服务器要检查版本），但还是我前面说的需要服务端配合，不然接口的调用成功失败不可控。</p>
+</li>
+<li>
+<p>CURL扩展已支持并发，我们能一次访问N个接口，执行时间取最长接口的时间。比如我们能一次访问 京东支付（1s），微信支付(1.2s)，支付宝(0.8s)不同服务的三个接口,总耗时才1.2s。详细用法 curl_multi_init</p>
+</li>
+<li>
+<p>类似Node.js的异步IO框架Swoole，能很好的实现异步调用；不过Swoole理论上不能算PHP框架，他算是PHP功能的扩展。所以除非项目都用Swoole写，不然也是享受不到异步IO的福利。</p>
+</li>
+<li>
+<p>对yield的支持，能实现调度器的功能，写单进程的服务时能大展拳脚，特别是实现协程，异步更不在话下。不过在多进程的web服务上没有太大的使用场景，看未来会不会有新的玩法吧。</p>
+</li>
+</ol>
+<h3 id="关于web异步的解决方案"><a class="header-anchor" href="#关于web异步的解决方案">➡️</a>关于web异步的解决方案</h3>
+<p>这个主要是针对那些需要异步而且并不太看中异步操作的结果的特殊场景</p>
+<ol>
+<li>curl配合较短的等待时间.</li>
+<li>写一个swoole项目,需要异步时发送相应指令到相关端口</li>
+<li>使用以下插件</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Arrow</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">static</span> <span class="variable">$instance</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> static</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getInstance</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">null</span> == Arrow::<span class="variable">$instance</span>)</span><br><span class="line">            Arrow::<span class="variable">$instance</span> = <span class="keyword">new</span> Arrow();</span><br><span class="line">        <span class="keyword">return</span> Arrow::<span class="variable">$instance</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"><span class="variable">$rb</span></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$pid</span> = pcntl_fork();</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$pid</span> &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            pcntl_wait(<span class="variable">$status</span>);</span><br><span class="line">        &#125;<span class="keyword">elseif</span>(<span class="variable">$pid</span> == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="variable">$cid</span> = pcntl_fork();</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$cid</span> == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="variable">$rb</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">exit</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*调用</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="variable">$time_out</span> = <span class="number">30</span>;</span><br><span class="line">Arrow::getInstance()-&gt;run(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) <span class="title">use</span> (<span class="params"><span class="variable">$time_out</span></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//这里写我们要执行的代码</span></span><br><span class="line">    sleep(<span class="variable">$time_out</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最终事实证明还是curl稳定,通过pcntl_fork()拉出的子进程和孙进程会影响到web的正常返回</p>
+]]></content>
+      <tags>
+        <tag>PHP</tag>
+        <tag>异步</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ps 进程查看器</title>
     <url>/posts/f1c6d624/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h2 id="ps-进程查看器"><a class="header-anchor" href="#ps-进程查看器">➡️</a>ps 进程查看器</h2>
@@ -93,63 +150,6 @@ ps工具标识进程的5种状态码:</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lilis ~]# ps -l</span><br><span class="line">F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</span><br><span class="line">0 R     0  4334 18277  0  80   0 - 38292 -      pts/0    00:00:00 ps</span><br><span class="line">4 S     0 18277 18275  0  80   0 - 28892 do_wai pts/0    00:00:00 bash</span><br></pre></td></tr></table></figure>
 <h4 id="列出目前所有的正在内存中的程序"><a class="header-anchor" href="#列出目前所有的正在内存中的程序">➡️</a>列出目前所有的正在内存中的程序</h4>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lilis ~]# ps aux</span><br><span class="line">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span><br><span class="line">root         1  0.0  0.2  43416  2500 ?        Ss   Aug16   0:02 /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">root         2  0.0  0.0      0     0 ?        S    Aug16   0:00 [kthreadd]</span><br><span class="line">root         3  0.0  0.0      0     0 ?        S    Aug16   0:00 [ksoftirqd/0]</span><br><span class="line">root         5  0.0  0.0      0     0 ?        S&lt;   Aug16   0:00 [kworker/0:0H]</span><br><span class="line">root         7  0.0  0.0      0     0 ?        S    Aug16   0:00 [migration/0]</span><br><span class="line">root         8  0.0  0.0      0     0 ?        S    Aug16   0:00 [rcu_bh]</span><br><span class="line">root         9  0.0  0.0      0     0 ?        R    Aug16   0:03 [rcu_sched]</span><br><span class="line">root        10  0.0  0.0      0     0 ?        S&lt;   Aug16   0:00 [lru-add-drain]</span><br></pre></td></tr></table></figure>]]></content>
-  </entry>
-  <entry>
-    <title>PHP的非swoole异步操作</title>
-    <url>/posts/398018bd/</url>
-    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>在前几天对WordPress进行同步更新文章的改造之后,每次更新文章都需要花费较长的时间,这很显然是不合理的.<br>
-更新文章主要都把时间花费在了一条shell指令上面.</p>
-  <a id="more"></a>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">exec(<span class="string">&#x27;cd 目录 &amp;&amp; hexo clean &amp;&amp; hexo d &amp;&amp; pm2 reload app&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>引用原文地址:</p>
-<ol>
-<li><a href="http://www.laruence.com/2008/04/14/318.html" title="PHP实现异步调用方法研究">PHP实现异步调用方法研究</a></li>
-<li><a href="https://www.jianshu.com/p/3f8a43b22dd8" title="PHP异步的的玩法">PHP异步的的玩法</a></li>
-</ol>
-<h3 id="先说说鸟哥文章中的几种玩法："><a class="header-anchor" href="#先说说鸟哥文章中的几种玩法：">➡️</a>先说说鸟哥文章中的几种玩法：</h3>
-<ol>
-<li>
-<p>通过渲染前端页面，使用js执行Ajax，这种方式现在还适用。只是受限于业务场景，因为只能在浏览器中调用，遇到接口请求就不行了。</p>
-</li>
-<li>
-<p>通过popen()方法打开一个指向进程的管道，每个请求会多起一个进程。忽略进程来看最主要的原因是数据的传输特别不方便，使用场景有限。</p>
-</li>
-<li>
-<p>使用CURL扩展，通过设置timeout超时参数，能实现离弦之箭的效果。不过这种方法会主动断开连接。被调用的服务如果有做连接检测，也会中断服务端脚本的执行。比如我们请求 微信的某个费时接口（20s），我们调用1s就断开连接，微信端是否会维持请求执行20S是不可控的。所以在curl别的网站的时候这种方法不推荐大家使用，但如果只是curl自己还是很好用的。</p>
-</li>
-<li>
-<p>与CURL类似，通过fsockopen创建socket连接访问远程服务，不循环获取请求结果。一样会有三中连接被断开的问题。</p>
-</li>
-</ol>
-<h3 id="PHP关于异步的改进"><a class="header-anchor" href="#PHP关于异步的改进">➡️</a>PHP关于异步的改进</h3>
-<ol>
-<li>
-<p>CURL扩展已支持毫秒配置，将 CURLOPT_TIMEOUT 改为 CURLOPT_TIMEOUT_MS 即可生效（cURL 版本 &gt;= libcurl/7.21.0，老服务器要检查版本），但还是我前面说的需要服务端配合，不然接口的调用成功失败不可控。</p>
-</li>
-<li>
-<p>CURL扩展已支持并发，我们能一次访问N个接口，执行时间取最长接口的时间。比如我们能一次访问 京东支付（1s），微信支付(1.2s)，支付宝(0.8s)不同服务的三个接口,总耗时才1.2s。详细用法 curl_multi_init</p>
-</li>
-<li>
-<p>类似Node.js的异步IO框架Swoole，能很好的实现异步调用；不过Swoole理论上不能算PHP框架，他算是PHP功能的扩展。所以除非项目都用Swoole写，不然也是享受不到异步IO的福利。</p>
-</li>
-<li>
-<p>对yield的支持，能实现调度器的功能，写单进程的服务时能大展拳脚，特别是实现协程，异步更不在话下。不过在多进程的web服务上没有太大的使用场景，看未来会不会有新的玩法吧。</p>
-</li>
-</ol>
-<h3 id="关于web异步的解决方案"><a class="header-anchor" href="#关于web异步的解决方案">➡️</a>关于web异步的解决方案</h3>
-<p>这个主要是针对那些需要异步而且并不太看中异步操作的结果的特殊场景</p>
-<ol>
-<li>curl配合较短的等待时间.</li>
-<li>写一个swoole项目,需要异步时发送相应指令到相关端口</li>
-<li>使用以下插件</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Arrow</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">static</span> <span class="variable">$instance</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> static</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getInstance</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">null</span> == Arrow::<span class="variable">$instance</span>)</span><br><span class="line">            Arrow::<span class="variable">$instance</span> = <span class="keyword">new</span> Arrow();</span><br><span class="line">        <span class="keyword">return</span> Arrow::<span class="variable">$instance</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"><span class="variable">$rb</span></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$pid</span> = pcntl_fork();</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$pid</span> &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            pcntl_wait(<span class="variable">$status</span>);</span><br><span class="line">        &#125;<span class="keyword">elseif</span>(<span class="variable">$pid</span> == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="variable">$cid</span> = pcntl_fork();</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$cid</span> == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="variable">$rb</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">exit</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*调用</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="variable">$time_out</span> = <span class="number">30</span>;</span><br><span class="line">Arrow::getInstance()-&gt;run(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) <span class="title">use</span> (<span class="params"><span class="variable">$time_out</span></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//这里写我们要执行的代码</span></span><br><span class="line">    sleep(<span class="variable">$time_out</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>最终事实证明还是curl稳定,通过pcntl_fork()拉出的子进程和孙进程会影响到web的正常返回</p>
-]]></content>
-      <tags>
-        <tag>PHP</tag>
-        <tag>异步</tag>
-      </tags>
   </entry>
   <entry>
     <title>centos修改Hostname</title>
@@ -1823,41 +1823,6 @@ chmod +x shadowsocksR.sh
       </tags>
   </entry>
   <entry>
-    <title>scp 跨机远程拷贝</title>
-    <url>/posts/e90a0b6e/</url>
-    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>scp是secure copy的简写，用于在Linux下进行远程拷贝文件的命令，和它类似的命令有cp，不过cp只是在本机进行拷贝不能跨服务器，而且scp传输是加密的。当你服务器硬盘变为只读 read only system时，用scp可以帮你把文件移出来。</p>
-<a id="more"></a>
-<p>原文链接:<br>
-<a href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/scp.html" title="scp 跨机远程拷贝">scp 跨机远程拷贝</a></p>
-<h3 id="命令格式"><a class="header-anchor" href="#命令格式">➡️</a>命令格式</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp [参数] [原路径] [目标路径]</span><br></pre></td></tr></table></figure>
-<h3 id="命令参数"><a class="header-anchor" href="#命令参数">➡️</a>命令参数</h3>
-<ol>
-<li>-1 强制scp命令使用协议ssh1</li>
-<li>-2 强制scp命令使用协议ssh2</li>
-<li>-4 强制scp命令只使用IPv4寻址</li>
-<li>-6 强制scp命令只使用IPv6寻址</li>
-<li>-B 使用批处理模式（传输过程中不询问传输口令或短语）</li>
-<li>-C 允许压缩。（将-C标志传递给ssh，从而打开压缩功能）</li>
-<li>-p 留原文件的修改时间，访问时间和访问权限。</li>
-<li>-q 不显示传输进度条。</li>
-<li>-r 递归复制整个目录。</li>
-<li>-v 详细方式显示输出。scp和ssh(1)会显示出整个过程的调试信息。这些信息用于调试连接，验证和配置问题。</li>
-<li>-c cipher 以cipher将数据传输进行加密，这个选项将直接传递给ssh。</li>
-<li>-F ssh_config 指定一个替代的ssh配置文件，此参数直接传递给ssh。</li>
-<li>-i identity_file 从指定文件中读取传输时使用的密钥文件，此参数直接传递给ssh。</li>
-<li>-l limit 限定用户所能使用的带宽，以Kbit/s为单位。</li>
-<li>-o ssh_option 如果习惯于使用ssh_config(5)中的参数传递方式，</li>
-<li>-P port 注意是大写的P, port是指定数据传输用到的端口号</li>
-<li>-S program 指定加密传输时所使用的程序。此程序必须能够理解ssh(1)的选项。</li>
-</ol>
-<h3 id="使用说明"><a class="header-anchor" href="#使用说明">➡️</a>使用说明</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp local_file remote_username@remote_ip:remote_folder</span><br><span class="line">scp remote_username@remote_ip:remote_folder local_file</span><br><span class="line">scp remote_username@remote_ip:remote_folder remote_username@remote_ip:remote_folder</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>php编译安装</title>
     <url>/posts/6c2c2aec/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>PHP编译安装</p>
@@ -1972,22 +1937,38 @@ sar是查看操作系统报告指标的各种工具中，最为普遍和方便�
       </tags>
   </entry>
   <entry>
-    <title>关于wordpress 更新时需要FTP 服务器账户密码 的解决方法</title>
-    <url>/posts/49414842/</url>
-    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h2 id="问题"><a class="header-anchor" href="#问题">➡️</a>问题</h2>
-<p>WordPress的更新页面出现ftp链接设定</p>
-<h2 id="more-解决"><a class="header-anchor" href="#more-解决">➡️</a><a id="more"></a><br>
-解决</h2>
+    <title>scp 跨机远程拷贝</title>
+    <url>/posts/e90a0b6e/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>scp是secure copy的简写，用于在Linux下进行远程拷贝文件的命令，和它类似的命令有cp，不过cp只是在本机进行拷贝不能跨服务器，而且scp传输是加密的。当你服务器硬盘变为只读 read only system时，用scp可以帮你把文件移出来。</p>
+<a id="more"></a>
+<p>原文链接:<br>
+<a href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/scp.html" title="scp 跨机远程拷贝">scp 跨机远程拷贝</a></p>
+<h3 id="命令格式"><a class="header-anchor" href="#命令格式">➡️</a>命令格式</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp [参数] [原路径] [目标路径]</span><br></pre></td></tr></table></figure>
+<h3 id="命令参数"><a class="header-anchor" href="#命令参数">➡️</a>命令参数</h3>
 <ol>
-<li>给服务器服务所用的用户的WordPress所在目录足够的更新权限</li>
-<li>在<code>wp-config.php</code>文件中添加 <code>php define(&quot;FS_METHOD&quot;, &quot;direct&quot;); define(&quot;FS_CHMOD_DIR&quot;, 0777); define(&quot;FS_CHMOD_FILE&quot;, 0777);</code></li>
+<li>-1 强制scp命令使用协议ssh1</li>
+<li>-2 强制scp命令使用协议ssh2</li>
+<li>-4 强制scp命令只使用IPv4寻址</li>
+<li>-6 强制scp命令只使用IPv6寻址</li>
+<li>-B 使用批处理模式（传输过程中不询问传输口令或短语）</li>
+<li>-C 允许压缩。（将-C标志传递给ssh，从而打开压缩功能）</li>
+<li>-p 留原文件的修改时间，访问时间和访问权限。</li>
+<li>-q 不显示传输进度条。</li>
+<li>-r 递归复制整个目录。</li>
+<li>-v 详细方式显示输出。scp和ssh(1)会显示出整个过程的调试信息。这些信息用于调试连接，验证和配置问题。</li>
+<li>-c cipher 以cipher将数据传输进行加密，这个选项将直接传递给ssh。</li>
+<li>-F ssh_config 指定一个替代的ssh配置文件，此参数直接传递给ssh。</li>
+<li>-i identity_file 从指定文件中读取传输时使用的密钥文件，此参数直接传递给ssh。</li>
+<li>-l limit 限定用户所能使用的带宽，以Kbit/s为单位。</li>
+<li>-o ssh_option 如果习惯于使用ssh_config(5)中的参数传递方式，</li>
+<li>-P port 注意是大写的P, port是指定数据传输用到的端口号</li>
+<li>-S program 指定加密传输时所使用的程序。此程序必须能够理解ssh(1)的选项。</li>
 </ol>
-]]></content>
+<h3 id="使用说明"><a class="header-anchor" href="#使用说明">➡️</a>使用说明</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp local_file remote_username@remote_ip:remote_folder</span><br><span class="line">scp remote_username@remote_ip:remote_folder local_file</span><br><span class="line">scp remote_username@remote_ip:remote_folder remote_username@remote_ip:remote_folder</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
-        <tag>PHP</tag>
-        <tag>WordPress</tag>
-        <tag>报错</tag>
-        <tag>问题</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2016,6 +1997,25 @@ sar是查看操作系统报告指标的各种工具中，最为普遍和方便�
       <tags>
         <tag>WordPress</tag>
         <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于wordpress 更新时需要FTP 服务器账户密码 的解决方法</title>
+    <url>/posts/49414842/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h2 id="问题"><a class="header-anchor" href="#问题">➡️</a>问题</h2>
+<p>WordPress的更新页面出现ftp链接设定</p>
+<h2 id="more-解决"><a class="header-anchor" href="#more-解决">➡️</a><a id="more"></a><br>
+解决</h2>
+<ol>
+<li>给服务器服务所用的用户的WordPress所在目录足够的更新权限</li>
+<li>在<code>wp-config.php</code>文件中添加 <code>php define(&quot;FS_METHOD&quot;, &quot;direct&quot;); define(&quot;FS_CHMOD_DIR&quot;, 0777); define(&quot;FS_CHMOD_FILE&quot;, 0777);</code></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>PHP</tag>
+        <tag>WordPress</tag>
+        <tag>问题</tag>
+        <tag>报错</tag>
       </tags>
   </entry>
   <entry>
