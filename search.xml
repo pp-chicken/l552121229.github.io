@@ -152,6 +152,20 @@ ps工具标识进程的5种状态码:</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lilis ~]# ps aux</span><br><span class="line">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span><br><span class="line">root         1  0.0  0.2  43416  2500 ?        Ss   Aug16   0:02 /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">root         2  0.0  0.0      0     0 ?        S    Aug16   0:00 [kthreadd]</span><br><span class="line">root         3  0.0  0.0      0     0 ?        S    Aug16   0:00 [ksoftirqd/0]</span><br><span class="line">root         5  0.0  0.0      0     0 ?        S&lt;   Aug16   0:00 [kworker/0:0H]</span><br><span class="line">root         7  0.0  0.0      0     0 ?        S    Aug16   0:00 [migration/0]</span><br><span class="line">root         8  0.0  0.0      0     0 ?        S    Aug16   0:00 [rcu_bh]</span><br><span class="line">root         9  0.0  0.0      0     0 ?        R    Aug16   0:03 [rcu_sched]</span><br><span class="line">root        10  0.0  0.0      0     0 ?        S&lt;   Aug16   0:00 [lru-add-drain]</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
+    <title>centos修改Hostname</title>
+    <url>/posts/e0a8795/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>hostname主要用于区分自己所连接的服务器<br>
+当自己连接在多台服务器是不至于只能看ip区分服务器</p>
+<a id="more"></a>
+<p>临时修改hostname:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hostname lilis</span><br></pre></td></tr></table></figure>
+<p>永久修改hostname</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/sysconfig/network</span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改或添加</span></span><br><span class="line"> HOSTNAME=lilis</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS 7安装TCP BBR拥塞算法</title>
     <url>/posts/907e528c/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h4 id="认识BBR拥塞算法"><a class="header-anchor" href="#认识BBR拥塞算法">➡️</a>认识BBR拥塞算法</h4>
@@ -203,20 +217,6 @@ ps工具标识进程的5种状态码:</p>
       </tags>
   </entry>
   <entry>
-    <title>centos修改Hostname</title>
-    <url>/posts/e0a8795/</url>
-    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>hostname主要用于区分自己所连接的服务器<br>
-当自己连接在多台服务器是不至于只能看ip区分服务器</p>
-<a id="more"></a>
-<p>临时修改hostname:</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hostname lilis</span><br></pre></td></tr></table></figure>
-<p>永久修改hostname</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/sysconfig/network</span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改或添加</span></span><br><span class="line"> HOSTNAME=lilis</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTML-页面嵌入测试</title>
     <url>/posts/2649187286/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h2 id="这是一个测试页面，测试iframe标签效果"><a class="header-anchor" href="#这是一个测试页面，测试iframe标签效果">➡️</a>这是一个测试页面，测试iframe标签效果</h2>
@@ -253,23 +253,6 @@ ps工具标识进程的5种状态码:</p>
       <tags>
         <tag>MySQL</tag>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL常用语法</title>
-    <url>/posts/fad88b6d/</url>
-    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h2 id="数据表相关"><a class="header-anchor" href="#数据表相关">➡️</a>数据表相关</h2>
-<h4 id="创建数据表"><a class="header-anchor" href="#创建数据表">➡️</a>创建数据表</h4>
-<a id="more"></a>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> database laravelS</span><br><span class="line">    <span class="keyword">DEFAULT</span> <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8mb4</span><br><span class="line">    <span class="keyword">DEFAULT</span> <span class="keyword">COLLATE</span> utf8mb4_general_ci;</span><br></pre></td></tr></table></figure>
-<h4 id="清空数据表"><a class="header-anchor" href="#清空数据表">➡️</a>清空数据表</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> 表名</span><br></pre></td></tr></table></figure>
-<h4 id="导出数据"><a class="header-anchor" href="#导出数据">➡️</a>导出数据</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> runoob_tbl</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">INTO</span> OUTFILE <span class="string">&#x27;/tmp/runoob.txt&#x27;</span>;</span><br><span class="line">mysqldump <span class="operator">-</span>u root <span class="operator">-</span>p RUNOOB runoob_tbl <span class="operator">&gt;</span> dump.txt</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>代码</tag>
-        <tag>备忘</tag>
       </tags>
   </entry>
   <entry>
@@ -462,6 +445,23 @@ Laravel-China地址:<br>
         <tag>LaravelS</tag>
         <tag>Lumen</tag>
         <tag>swoole</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL常用语法</title>
+    <url>/posts/fad88b6d/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h2 id="数据表相关"><a class="header-anchor" href="#数据表相关">➡️</a>数据表相关</h2>
+<h4 id="创建数据表"><a class="header-anchor" href="#创建数据表">➡️</a>创建数据表</h4>
+<a id="more"></a>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> database laravelS</span><br><span class="line">    <span class="keyword">DEFAULT</span> <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8mb4</span><br><span class="line">    <span class="keyword">DEFAULT</span> <span class="keyword">COLLATE</span> utf8mb4_general_ci;</span><br></pre></td></tr></table></figure>
+<h4 id="清空数据表"><a class="header-anchor" href="#清空数据表">➡️</a>清空数据表</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> 表名</span><br></pre></td></tr></table></figure>
+<h4 id="导出数据"><a class="header-anchor" href="#导出数据">➡️</a>导出数据</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> runoob_tbl</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">INTO</span> OUTFILE <span class="string">&#x27;/tmp/runoob.txt&#x27;</span>;</span><br><span class="line">mysqldump <span class="operator">-</span>u root <span class="operator">-</span>p RUNOOB runoob_tbl <span class="operator">&gt;</span> dump.txt</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>代码</tag>
+        <tag>备忘</tag>
       </tags>
   </entry>
   <entry>
@@ -1242,6 +1242,94 @@ ps 如果报一下错误</p>
       </tags>
   </entry>
   <entry>
+    <title>目录管理</title>
+    <url>/posts/626b20b4/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1>目录管理</h1>
+<p>1.创建目录</p>
+<pre><code>mkdir dir
+</code></pre>
+<a id="more"></a>
+<p>2.删除目录</p>
+<pre><code>rm -rf dir
+</code></pre>
+<p>3.创建目录</p>
+<pre><code> mkdir -p a/b/c/d/e/g
+ mkdir -p aa/bb/cc/dd/ee/gg
+</code></pre>
+<p>cd - #记忆近两次使用的目录</p>
+<h1>文件管理</h1>
+<p>新建文件</p>
+<pre><code>touch file1
+touch file&#123;1..10&#125;
+</code></pre>
+<p>删除文件</p>
+<pre><code>rm -rf file1
+</code></pre>
+<p>编辑文件</p>
+<pre><code>vi file1
+</code></pre>
+<p>复制</p>
+<pre><code>cp file1 /mnt/file2
+\cp file1 /mnt/file2 #去除别名
+</code></pre>
+<p>移动</p>
+<pre><code>mv file1 /mnt/file1
+</code></pre>
+<p>查看文件内容</p>
+<pre><code>cat file1
+</code></pre>
+<p>查看文件内容</p>
+<pre><code>more file2
+</code></pre>
+<p>从第一页往下查看</p>
+<pre><code>tree dir
+</code></pre>
+<p>递归查看目录下的所有子目录和文件</p>
+<pre><code>ls -lR
+</code></pre>
+<h1>文件搜索</h1>
+<p>1.<code>find</code></p>
+<pre><code>find /root -name file1
+</code></pre>
+<p>在/root下查找file1</p>
+<pre><code>find /root -name file1 -exec rm -rf &#123;&#125; ;
+</code></pre>
+<p>在/root下查找file1并删除 2.<code>which</code></p>
+<pre><code>which ls
+</code></pre>
+<p>3.<code>locate</code> 1)形成数据库</p>
+<pre><code>updatedb
+</code></pre>
+<p>2)用locate查找</p>
+<pre><code>locate httpd.conf
+</code></pre>
+<h1>内容搜索:</h1>
+<p>1.<code>grep</code></p>
+<pre><code>cat file|grep linux
+</code></pre>
+<p>搜索file中包含linux的行</p>
+<pre><code>cat file1 |grep -E &quot;php|linux&quot;
+</code></pre>
+<p>搜索file1中包含php或linux的行</p>
+<h1>文件或目录权限</h1>
+<p>查看文件权限</p>
+<pre><code>ls -l dir1
+</code></pre>
+<p>修改权限</p>
+<pre><code>chmod 755 dir
+7 = rwx =421
+chmod o+w dir
+u,g,o=a
+</code></pre>
+<p>#修改文件所有者</p>
+<pre><code>chown [-R] 账号名称:用户组名称 文件或目录</code></pre>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>shell命令</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux基本指令</title>
     <url>/posts/ca1c9939/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1>linux基本指令</h1>
@@ -1374,94 +1462,6 @@ alias route.list='php artisan route:list';
 alias admin.install='composer require encore/laravel-admin &quot;1.5.*&quot;';
 alias admin.install.2='php artisan vendor:publish --provider=&quot;Encore\Admin\AdminServiceProvider&quot; &amp;&amp; php artisan admin:install';
 alias admin.helper='composer require laravel-admin-ext/helpers &amp;&amp; php artisan admin:import helpers';</code></pre>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>shell命令</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>目录管理</title>
-    <url>/posts/626b20b4/</url>
-    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1>目录管理</h1>
-<p>1.创建目录</p>
-<pre><code>mkdir dir
-</code></pre>
-<a id="more"></a>
-<p>2.删除目录</p>
-<pre><code>rm -rf dir
-</code></pre>
-<p>3.创建目录</p>
-<pre><code> mkdir -p a/b/c/d/e/g
- mkdir -p aa/bb/cc/dd/ee/gg
-</code></pre>
-<p>cd - #记忆近两次使用的目录</p>
-<h1>文件管理</h1>
-<p>新建文件</p>
-<pre><code>touch file1
-touch file&#123;1..10&#125;
-</code></pre>
-<p>删除文件</p>
-<pre><code>rm -rf file1
-</code></pre>
-<p>编辑文件</p>
-<pre><code>vi file1
-</code></pre>
-<p>复制</p>
-<pre><code>cp file1 /mnt/file2
-\cp file1 /mnt/file2 #去除别名
-</code></pre>
-<p>移动</p>
-<pre><code>mv file1 /mnt/file1
-</code></pre>
-<p>查看文件内容</p>
-<pre><code>cat file1
-</code></pre>
-<p>查看文件内容</p>
-<pre><code>more file2
-</code></pre>
-<p>从第一页往下查看</p>
-<pre><code>tree dir
-</code></pre>
-<p>递归查看目录下的所有子目录和文件</p>
-<pre><code>ls -lR
-</code></pre>
-<h1>文件搜索</h1>
-<p>1.<code>find</code></p>
-<pre><code>find /root -name file1
-</code></pre>
-<p>在/root下查找file1</p>
-<pre><code>find /root -name file1 -exec rm -rf &#123;&#125; ;
-</code></pre>
-<p>在/root下查找file1并删除 2.<code>which</code></p>
-<pre><code>which ls
-</code></pre>
-<p>3.<code>locate</code> 1)形成数据库</p>
-<pre><code>updatedb
-</code></pre>
-<p>2)用locate查找</p>
-<pre><code>locate httpd.conf
-</code></pre>
-<h1>内容搜索:</h1>
-<p>1.<code>grep</code></p>
-<pre><code>cat file|grep linux
-</code></pre>
-<p>搜索file中包含linux的行</p>
-<pre><code>cat file1 |grep -E &quot;php|linux&quot;
-</code></pre>
-<p>搜索file1中包含php或linux的行</p>
-<h1>文件或目录权限</h1>
-<p>查看文件权限</p>
-<pre><code>ls -l dir1
-</code></pre>
-<p>修改权限</p>
-<pre><code>chmod 755 dir
-7 = rwx =421
-chmod o+w dir
-u,g,o=a
-</code></pre>
-<p>#修改文件所有者</p>
-<pre><code>chown [-R] 账号名称:用户组名称 文件或目录</code></pre>
 ]]></content>
       <tags>
         <tag>Linux</tag>
@@ -1940,6 +1940,25 @@ sar是查看操作系统报告指标的各种工具中，最为普遍和方便�
       </tags>
   </entry>
   <entry>
+    <title>关于wordpress 更新时需要FTP 服务器账户密码 的解决方法</title>
+    <url>/posts/49414842/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h2 id="问题"><a class="header-anchor" href="#问题">➡️</a>问题</h2>
+<p>WordPress的更新页面出现ftp链接设定</p>
+<h2 id="more-解决"><a class="header-anchor" href="#more-解决">➡️</a><a id="more"></a><br>
+解决</h2>
+<ol>
+<li>给服务器服务所用的用户的WordPress所在目录足够的更新权限</li>
+<li>在<code>wp-config.php</code>文件中添加 <code>php define(&quot;FS_METHOD&quot;, &quot;direct&quot;); define(&quot;FS_CHMOD_DIR&quot;, 0777); define(&quot;FS_CHMOD_FILE&quot;, 0777);</code></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>PHP</tag>
+        <tag>WordPress</tag>
+        <tag>报错</tag>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>scp 跨机远程拷贝</title>
     <url>/posts/e90a0b6e/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>scp是secure copy的简写，用于在Linux下进行远程拷贝文件的命令，和它类似的命令有cp，不过cp只是在本机进行拷贝不能跨服务器，而且scp传输是加密的。当你服务器硬盘变为只读 read only system时，用scp可以帮你把文件移出来。</p>
@@ -2034,28 +2053,9 @@ sar是查看操作系统报告指标的各种工具中，最为普遍和方便�
 ]]></content>
       <tags>
         <tag>编译</tag>
+        <tag>报错</tag>
         <tag>gcc-c++</tag>
         <tag>pcre</tag>
-        <tag>报错</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于wordpress 更新时需要FTP 服务器账户密码 的解决方法</title>
-    <url>/posts/49414842/</url>
-    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h2 id="问题"><a class="header-anchor" href="#问题">➡️</a>问题</h2>
-<p>WordPress的更新页面出现ftp链接设定</p>
-<h2 id="more-解决"><a class="header-anchor" href="#more-解决">➡️</a><a id="more"></a><br>
-解决</h2>
-<ol>
-<li>给服务器服务所用的用户的WordPress所在目录足够的更新权限</li>
-<li>在<code>wp-config.php</code>文件中添加 <code>php define(&quot;FS_METHOD&quot;, &quot;direct&quot;); define(&quot;FS_CHMOD_DIR&quot;, 0777); define(&quot;FS_CHMOD_FILE&quot;, 0777);</code></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>PHP</tag>
-        <tag>WordPress</tag>
-        <tag>问题</tag>
-        <tag>报错</tag>
       </tags>
   </entry>
   <entry>
