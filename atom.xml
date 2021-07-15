@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hexo.lilis.xin/"/>
-  <updated>2021-07-15T06:56:59.318Z</updated>
+  <updated>2021-07-15T10:13:21.531Z</updated>
   <id>https://hexo.lilis.xin/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://hexo.lilis.xin/posts/1/"/>
+    <id>https://hexo.lilis.xin/posts/1/</id>
+    <published>2021-07-15T10:12:33.325Z</published>
+    <updated>2021-07-15T10:13:21.531Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1>亚美-经销业务线-冀振威-交接文档</h1><h3 id="增值钜惠"><a class="header-anchor" href="#增值钜惠">➡️</a>增值钜惠</h3><blockquote><p>ps: 每隔三个月修改一次增值钜惠的结束时间，修改地址为 <a href="http://xmall.carrieym.com/web/index.php?c=site&amp;a=entry&amp;op=others&amp;do=sysset&amp;m=ewei_shop">http://xmall.carrieym.com/web/index.php?c=site&amp;a=entry&amp;op=others&amp;do=sysset&amp;m=ewei_shop</a><br>修改位置为底下的 增值聚惠活动 选项卡，修改完成后别忘了让运维删除配置缓存</p></blockquote><p>代码位置：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// xmallapp</span></span><br><span class="line"><span class="comment">// api/xmallrpc/server.php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断当前服务包订单是否在第二季促销活动期内 1.服务包 2.订单创建时间在活动期内</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $orderid</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">isSecQuarterPromote();</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断是否为增值钜惠期间B端导入的数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $data</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Thinkey</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-04-22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">isSecQuarterPromoteBImport();</span><br><span class="line"></span><br><span class="line"><span class="comment">// fxpt2</span></span><br><span class="line"><span class="comment">// addons/ewei_shop/core/model/sorting_excess_order.php</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="城服金豆"><a class="header-anchor" href="#城服金豆">➡️</a>城服金豆</h3><p>月度奖励后台补发</p><p>新版消息通知模块</p><p>账务系统部分旧功能</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1&gt;亚美-经销业务线-冀振威-交接文档&lt;/h1&gt;
+&lt;h3 id=&quot;增值钜惠&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;#增值钜惠&quot;&gt;➡️&lt;/a&gt;增值钜惠&lt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Linux网络io模型</title>
@@ -471,29 +493,6 @@
       <category term="laravel" scheme="https://hexo.lilis.xin/tags/laravel/"/>
     
       <category term="laravel-admin" scheme="https://hexo.lilis.xin/tags/laravel-admin/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hash索引和B-Tree索引</title>
-    <link href="https://hexo.lilis.xin/posts/294f33b7/"/>
-    <id>https://hexo.lilis.xin/posts/294f33b7/</id>
-    <published>2018-08-28T12:03:58.000Z</published>
-    <updated>2019-09-12T06:27:03.000Z</updated>
-    
-    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>索引是帮助mysql获取数据的数据结构。最常见的索引是Btree索引和Hash索引。</p><p>不同的引擎对于索引有不同的支持：Innodb和MyISAM默认的索引是Btree索引；而Mermory默认的索引是Hash索引。</p><a id="more"></a><p>原文链接：<br><a href="https://blog.csdn.net/u014307117/article/details/47325091" title="Hash索引和BTree索引">Hash索引和BTree索引</a></p><h3 id="Hash索引"><a class="header-anchor" href="#Hash索引">➡️</a>Hash索引</h3><p>所谓Hash索引，当我们要给某张表某列增加索引时，将这张表的这一列进行哈希算法计算，得到哈希值，排序在哈希数组上。所以Hash索引可以一次定位，其效率很高，而Btree索引需要经过多次的磁盘IO，但是innodb和myisam之所以没有采用它，是因为它存在着好多缺点：<br>因为Hash索引比较的是经过Hash计算的值，所以只能进行等式比较，不能用于范围查询</p><ul><li>每次都要全表扫描</li><li>由于哈希值是按照顺序排列的，但是哈希值映射的真正数据在哈希表中就不一定按照顺序排列，所以无法利用Hash索引来加速任何排序操作</li><li>不能用部分索引键来搜索，因为组合索引在计算哈希值的时候是一起计算的。</li><li>当哈希值大量重复且数据量非常大时，其检索效率并没有Btree索引高的。</li></ul><h3 id="B-Tree索引"><a class="header-anchor" href="#B-Tree索引">➡️</a>B-Tree索引</h3><p>至于Btree索引，它是以B+树为存储结构实现的。</p><p>但是Btree索引的存储结构在Innodb和MyISAM中有很大区别。</p><p>在MyISAM中，我们如果要对某张表的某列建立Btree索引的话，如图：<br><img src="https://img-blog.csdn.net/20150806231335315"><br>所以我们经常会说MyISAM中数据文件和索引文件是分开的。</p><p>因此MyISAM的索引方式也称为非聚集，Innodb的索引方式成为聚集索引。</p><p>至于辅助索引，类似于主索引，唯一区别就是主索引上的值不能重复，而辅助索引可以重复。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;索引是帮助mysql获取数据的数据结构。最常见的索引是Btree索引和Hash索引。&lt;/p&gt;
-&lt;p&gt;不同的引擎对于索引有不同的支持：Innodb和MyISAM默认的索引是Btree索引；而Mermory默认的索引是Hash索引。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="MySQL" scheme="https://hexo.lilis.xin/tags/MySQL/"/>
-    
-      <category term="数据结构" scheme="https://hexo.lilis.xin/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
