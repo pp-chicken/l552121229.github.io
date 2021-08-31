@@ -1480,21 +1480,6 @@ service network restart
       </tags>
   </entry>
   <entry>
-    <title>系统结构树</title>
-    <url>/posts/67e939ae/</url>
-    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1>系统结构树</h1>
-<p>1.<code>home</code> 普通用户的家目录 2.<code>mnt</code> 空目录 3.<code>media</code> 挂载光盘用的 4.<code>bin</code> 所有用户都可以执行的命令 5.<code>sbin</code> 只有root才可以执行的命令 6.<code>usr</code> 自定义安装的软件的执行程序，帮助手册 7.<code>var</code> 日志,缓存 8.<code>proc</code> 内存镜像文件 9.<code>dev</code> 硬盘设备文件 10.<code>etc</code> 软件的配置文件</p>
-<a id="more"></a>
-<pre><code>/etc/init.d/ #系统服务文件夹
-</code></pre>
-<p>11.<code>boot</code> 启动文件,包括linux内核，init进程镜像文件 12.<code>tmp</code> 临时目录 13.<code>root</code> 超级用户的家目录</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>shell命令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>用户管理</title>
     <url>/posts/500fed5c/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1>用户管理</h1>
@@ -1510,6 +1495,21 @@ service network restart
 </code></pre>
 <p>当普通用户通过sudo以root用户执行命令时，<code>sudo</code>后面的 <code>-uUSERNAME</code>可省略，即<code>sudo COMMAND</code> 即意为sudo以root用户执行 默认情况下，系统只有root用户可以执行sudo命令。需要root用户通过使用<code>visudo</code>命令编辑sudo的配置文件<code>/etc/sudoers</code>，才可以授权其他普通用户执行sudo命令。 #修改文件所有者</p>
 <pre><code>chown [-R] 账号名称:用户组名称 文件或目录</code></pre>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>shell命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>系统结构树</title>
+    <url>/posts/67e939ae/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1>系统结构树</h1>
+<p>1.<code>home</code> 普通用户的家目录 2.<code>mnt</code> 空目录 3.<code>media</code> 挂载光盘用的 4.<code>bin</code> 所有用户都可以执行的命令 5.<code>sbin</code> 只有root才可以执行的命令 6.<code>usr</code> 自定义安装的软件的执行程序，帮助手册 7.<code>var</code> 日志,缓存 8.<code>proc</code> 内存镜像文件 9.<code>dev</code> 硬盘设备文件 10.<code>etc</code> 软件的配置文件</p>
+<a id="more"></a>
+<pre><code>/etc/init.d/ #系统服务文件夹
+</code></pre>
+<p>11.<code>boot</code> 启动文件,包括linux内核，init进程镜像文件 12.<code>tmp</code> 临时目录 13.<code>root</code> 超级用户的家目录</p>
 ]]></content>
       <tags>
         <tag>Linux</tag>
@@ -1764,23 +1764,6 @@ chmod +x shadowsocksR.sh
       <tags>
         <tag>vps</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/posts/1/</url>
-    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1>亚美-经销业务线-冀振威-交接文档</h1>
-<h3 id="增值钜惠"><a class="header-anchor" href="#增值钜惠">➡️</a>增值钜惠</h3>
-<blockquote>
-<p>ps: 每隔三个月修改一次增值钜惠的结束时间，修改地址为 <a href="http://xmall.carrieym.com/web/index.php?c=site&amp;a=entry&amp;op=others&amp;do=sysset&amp;m=ewei_shop">http://xmall.carrieym.com/web/index.php?c=site&amp;a=entry&amp;op=others&amp;do=sysset&amp;m=ewei_shop</a><br>
-修改位置为底下的 增值聚惠活动 选项卡，修改完成后别忘了让运维删除配置缓存</p>
-</blockquote>
-<p>代码位置：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// xmallapp</span></span><br><span class="line"><span class="comment">// api/xmallrpc/server.php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断当前服务包订单是否在第二季促销活动期内 1.服务包 2.订单创建时间在活动期内</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $orderid</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">isSecQuarterPromote();</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断是否为增值钜惠期间B端导入的数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $data</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Thinkey</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-04-22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">isSecQuarterPromoteBImport();</span><br><span class="line"></span><br><span class="line"><span class="comment">// fxpt2</span></span><br><span class="line"><span class="comment">// addons/ewei_shop/core/model/sorting_excess_order.php</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="城服金豆"><a class="header-anchor" href="#城服金豆">➡️</a>城服金豆</h3>
-<p>月度奖励后台补发</p>
-<p>新版消息通知模块</p>
-<p>账务系统部分旧功能</p>
-]]></content>
   </entry>
   <entry>
     <title>php在linux下call to undefined function imagettftext()</title>
@@ -2152,15 +2135,6 @@ Installing shared extensions:     /usr/local/php70/lib/php/20151012/</code></pre
       </tags>
   </entry>
   <entry>
-    <title>测试Emoji表情</title>
-    <url>/posts/5cd7067a/</url>
-    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>🐰 🐨 🐸 🐞 🐾 😄 💙✈️👶🐤🎈🐻🌵👯😰🍂💋🎃🐙</p>
-]]></content>
-      <tags>
-        <tag>emoji</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>基于Redis的GeoHash在PHP上的应用</title>
     <url>/posts/3dd74411/</url>
     <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>GeoHash有着以下几个特点</p>
@@ -2369,6 +2343,15 @@ Installing shared extensions:     /usr/local/php70/lib/php/20151012/</code></pre
         <tag>redis</tag>
         <tag>GeoHash</tag>
         <tag>GPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>测试Emoji表情</title>
+    <url>/posts/5cd7067a/</url>
+    <content><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>🐰 🐨 🐸 🐞 🐾 😄 💙✈️👶🐤🎈🐻🌵👯😰🍂💋🎃🐙</p>
+]]></content>
+      <tags>
+        <tag>emoji</tag>
       </tags>
   </entry>
   <entry>
